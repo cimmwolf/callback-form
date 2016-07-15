@@ -1,0 +1,60 @@
+<html><head><meta charset="UTF-8"><link rel="import" href="/bower_components/iron-form/iron-form.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-input/paper-textarea.html">
+
+</head><body><dom-module id="callback-form">
+    <template>
+        <style>
+            :host { }
+        </style>
+        <form is="iron-form" action="[[action]]" method="post" id="callbackForm">
+            <paper-input label="Ваше имя или организация" name="name" error-message="Пожалуйста, представьтесь" required=""></paper-input>
+            <paper-input label="Телефон" name="phone" error-message="Проверьте ваш номер телефона" allowed-pattern="[+0-9-]" auto-validate="" required=""></paper-input>
+            <paper-textarea label="Ваш комментарий" name="comment"></paper-textarea>
+            <br><br>
+            <div class="text-center" id="callbackFormBottom">
+                <button class="btn btn-primary btn-lg" id="callbackSubmitButton" data-loading-text="отправка...">Оставить заявку</button>
+            </div>
+        </form>
+    </template>
+    <script>(function() {
+  Polymer({
+    is: 'callback-form',
+    properties: {
+      action: String
+    },
+    ready: function() {
+      this.listen(this.$.callbackForm, 'iron-form-submit', 'onSubmit');
+      this.listen(this.$.callbackForm, 'iron-form-error', 'onError');
+      return this.listen(this.$.callbackForm, 'iron-form-response', 'onResponse');
+    },
+    onSubmit: function() {
+      var btn, i, input, len, ref;
+      btn = this.$.callbackSubmitButton;
+      btn.textContent = btn.getAttribute('data-loading-text');
+      ref = this.querySelectorAll('paper-input, paper-textarea');
+      for (i = 0, len = ref.length; i < len; i++) {
+        input = ref[i];
+        input.disabled = true;
+      }
+      return btn.disabled = true;
+    },
+    onError: function() {
+      this.prepareForMessage();
+      this.$.callbackFormBottom.textContent = 'Произошла ошибка. Напишите нашему вебмастеру: webmaster@eco74.com.';
+      return this.toggleClass('alert-danger', true, this.$.callbackFormBottom);
+    },
+    onResponse: function() {
+      this.prepareForMessage();
+      this.$.callbackFormBottom.textContent = 'Заявка успешно отправлена!';
+      return this.toggleClass('alert-success', true, this.$.callbackFormBottom);
+    },
+    prepareForMessage: function() {
+      this.$.callbackSubmitButton.parentNode.removeChild(this.$.callbackSubmitButton);
+      return this.toggleClass('alert', true, this.$.callbackFormBottom);
+    }
+  });
+
+}).call(this);
+</script>
+</dom-module></body></html>

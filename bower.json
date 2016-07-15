@@ -1,0 +1,21 @@
+{
+  "name": "callback-form",
+  "authors": [
+    "Denis Deliaev <cimmwolf@gmail.com>"
+  ],
+  "description": "Callback form for sites",
+  "main": "callback-form.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-form": "PolymerElements/iron-form#^1.1.1",
+    "paper-input": "PolymerElements/paper-input#^1.1.15"
+  }
+}
