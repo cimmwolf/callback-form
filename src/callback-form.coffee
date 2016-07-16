@@ -3,6 +3,9 @@ Polymer
 
   properties:
     action: String
+    errorMessage:
+      type: String
+      value: 'Произошла ошибка. Попробуйте отправить вашу заявку позднее.'
 
   ready: ->
     @.listen @.$.callbackForm, 'iron-form-submit', 'onSubmit'
@@ -18,7 +21,7 @@ Polymer
 
   onError: ->
     @prepareForMessage()
-    @.$.callbackFormBottom.textContent = 'Произошла ошибка. Напишите нашему вебмастеру: webmaster@eco74.com.'
+    @.$.callbackFormBottom.textContent = @errorMessage
     @.toggleClass 'alert-danger', true, @.$.callbackFormBottom
 
   onResponse: ->

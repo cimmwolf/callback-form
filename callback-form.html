@@ -13,7 +13,9 @@
             <paper-textarea label="Ваш комментарий" name="comment"></paper-textarea>
             <br><br>
             <div class="text-center" id="callbackFormBottom">
-                <button class="btn btn-primary btn-lg" id="callbackSubmitButton" data-loading-text="отправка...">Оставить заявку</button>
+                <button class="btn btn-primary btn-lg" id="callbackSubmitButton" data-loading-text="отправка...">
+                    Оставить заявку
+                </button>
             </div>
         </form>
     </template>
@@ -21,7 +23,11 @@
   Polymer({
     is: 'callback-form',
     properties: {
-      action: String
+      action: String,
+      errorMessage: {
+        type: String,
+        value: 'Произошла ошибка. Попробуйте отправить вашу заявку позднее.'
+      }
     },
     ready: function() {
       this.listen(this.$.callbackForm, 'iron-form-submit', 'onSubmit');
@@ -41,7 +47,7 @@
     },
     onError: function() {
       this.prepareForMessage();
-      this.$.callbackFormBottom.textContent = 'Произошла ошибка. Напишите нашему вебмастеру: webmaster@eco74.com.';
+      this.$.callbackFormBottom.textContent = this.errorMessage;
       return this.toggleClass('alert-danger', true, this.$.callbackFormBottom);
     },
     onResponse: function() {
