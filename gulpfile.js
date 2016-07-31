@@ -10,11 +10,14 @@ gulp.task('default', ['components'], function () {
 });
 
 gulp.task('components', ['vulcanize'], function () {
-    return gulp.src('assets/web-components/*')
+    gulp.src('assets/web-components/*')
         .pipe(polyclean.cleanCss())
         .pipe(polyclean.leftAlignJs())
         .pipe(polyclean.uglifyJs())
         .pipe(gulp.dest('assets/web-components'));
+
+    return gulp.src('callback-form.html')
+        .pipe(gulp.dest('bower_components/callback-form-test'));
 });
 
 gulp.task('vulcanize', ['style-modules', 'js-modules'], function () {
@@ -22,7 +25,7 @@ gulp.task('vulcanize', ['style-modules', 'js-modules'], function () {
         .pipe(vulcanize({
             inlineScripts: true,
             inlineCss: true,
-            excludes: ['bower_components/']
+            excludes: ['bower_components/', 'iron-form/', 'paper-input/']
         }))
         .pipe(gulp.dest('./'))
 });
