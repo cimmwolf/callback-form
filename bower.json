@@ -1,7 +1,7 @@
 {
   "name": "callback-form",
   "authors": [
-    "Denis Deliaev <cimmwolf@gmail.com>"
+    "Denis Beliaev <cimmwolf@gmail.com>"
   ],
   "description": "Callback form for sites",
   "main": "callback-form.html",
