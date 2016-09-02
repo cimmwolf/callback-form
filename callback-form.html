@@ -8,9 +8,9 @@
             :host { display: block; }
         </style>
         <form is="iron-form" action="[[action]]" method="post" id="callbackForm">
-            <paper-input label="Ваше имя или организация" name="name" error-message="Пожалуйста, представьтесь" required=""></paper-input>
-            <paper-input label="Телефон" name="phone" error-message="Проверьте ваш номер телефона" allowed-pattern="[+0-9-]" auto-validate="" required=""></paper-input>
-            <paper-textarea label="Ваш комментарий" name="comment"></paper-textarea>
+            <paper-input label="Ваше имя или организация" name="cbform[name]" error-message="Пожалуйста, представьтесь" required=""></paper-input>
+            <paper-input label="Телефон" name="cbform[phone]" error-message="Проверьте ваш номер телефона" allowed-pattern="[+0-9-]" auto-validate="" required=""></paper-input>
+            <paper-textarea label="Ваш комментарий" name="cbform[comment]"></paper-textarea>
             <br><br>
             <div class="text-center" id="callbackFormBottom">
                 <button class="btn btn-primary btn-lg" id="callbackSubmitButton" data-loading-text="отправка...">
