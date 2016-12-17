@@ -1,26 +1,12 @@
 <link rel="import" href="../iron-form/iron-form.html">
-<link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-input/paper-textarea.html">
 
 <dom-module id="callback-form">
     <template>
         <style>
             :host { display: block; }
         </style>
-        <form is="iron-form" action="[[action]]" method="post" id="callbackForm">
-            <paper-input label="Ваше имя или организация" name="cbform[name]" error-message="Пожалуйста, представьтесь" required
-            ></paper-input>
-            <paper-input label="Телефон" name="cbform[phone]" error-message="Проверьте ваш номер телефона"
-                         allowed-pattern="[+0-9-]"
-                         auto-validate
-                         required></paper-input>
-            <paper-textarea label="Ваш комментарий" name="cbform[comment]"></paper-textarea>
-            <br><br>
-            <div class="text-center" id="callbackFormBottom">
-                <button class="btn btn-primary btn-lg" id="callbackSubmitButton" data-loading-text="отправка...">
-                    Оставить заявку
-                </button>
-            </div>
+        <form is="iron-form" action$="[[action]]" method="post" id="callbackForm">
+            <content></content>
         </form>
     </template>
     <script src="../dist/callback-form.js"></script>
