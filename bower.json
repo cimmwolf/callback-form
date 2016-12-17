@@ -15,7 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "iron-form": "PolymerElements/iron-form#^1.1.1",
-    "paper-input": "PolymerElements/paper-input#^1.1.15"
+    "iron-form": "PolymerElements/iron-form#^1.1.1"
   }
 }

@@ -25,7 +25,7 @@ Polymer
   onSubmit: ->
     @submitBtn.textContent = @submitBtn.getAttribute('data-loading-text')
     for input in @.querySelectorAll('[name]')
-      input.disabled = true
+      input.disabled = true if this.isLightDescendant(input)
     @submitBtn.disabled = true
 
   onError: ->
