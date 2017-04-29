@@ -9,5 +9,70 @@
             <content></content>
         </form>
     </template>
-    <script src="../dist/callback-form.js"></script>
+    <script>
+        Polymer({
+            is: 'callback-form',
+            properties: {
+                action: String,
+                errorMessage: {
+                    type: String,
+                    value: 'Произошла ошибка. Попробуйте отправить вашу заявку позднее.'
+                },
+                submitMessage: {
+                    type: String,
+                    value: 'Заявка успешно отправлена!'
+                },
+                submitBtn: Object,
+                display: Object,
+                formData: Object
+            },
+            ready: function() {
+                this.submitBtn = this.querySelector('[type="submit"]');
+                if (this.submitBtn == null) {
+                    this.submitBtn = this.querySelector('button:not([type="button"])');
+                }
+                if (this.submitBtn == null) {
+                    console.error("Can't find submit button");
+                } else {
+                    this.display = this.submitBtn.parentNode;
+                }
+                this.listen(this.$.callbackForm, 'iron-form-submit', 'onSubmit');
+                this.listen(this.$.callbackForm, 'iron-form-error', 'onError');
+                return this.listen(this.$.callbackForm, 'iron-form-response', 'onResponse');
+            },
+            onSubmit: function() {
+                var i, input, len, ref;
+                this.formData = this.$.callbackForm.serialize();
+                this.submitBtn.textContent = this.submitBtn.getAttribute('data-loading-text');
+                ref = this.querySelectorAll('[name]');
+                for (i = 0, len = ref.length; i < len; i++) {
+                    input = ref[i];
+                    if (this.isLightDescendant(input)) {
+                        input.disabled = true;
+                    }
+                }
+                return this.submitBtn.disabled = true;
+            },
+            onError: function() {
+                this.prepareForMessage();
+                this.display.textContent = this.errorMessage;
+                this.toggleClass('alert-danger', true, this.display);
+                return this.fire('callback-form-sending-error', {
+                    formData: this.formData
+                });
+            },
+            onResponse: function() {
+                this.prepareForMessage();
+                this.display.textContent = this.submitMessage;
+                this.toggleClass('alert-success', true, this.display);
+                return this.fire('callback-form-sending-success', {
+                    formData: this.formData
+                });
+            },
+            prepareForMessage: function() {
+                this.display.removeChild(this.submitBtn);
+                return this.toggleClass('alert', true, this.display);
+            }
+        });
+    </script>
 </dom-module>
