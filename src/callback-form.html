@@ -5,7 +5,8 @@
         <style>
             :host { display: block; }
         </style>
-        <form is="iron-form" action$="[[action]]" method="post" id="callbackForm">
+        <!--suppress HtmlUnknownTarget -->
+        <form is="iron-form" action="[[action]]" method="post" id="callbackForm">
             <content></content>
         </form>
     </template>
@@ -26,21 +27,23 @@
                 display: Object,
                 formData: Object
             },
-            ready: function() {
+            ready: function () {
                 this.submitBtn = this.querySelector('[type="submit"]');
-                if (this.submitBtn == null) {
+                // noinspection EqualityComparisonWithCoercionJS
+                if (this.submitBtn == null)
                     this.submitBtn = this.querySelector('button:not([type="button"])');
-                }
-                if (this.submitBtn == null) {
+
+                // noinspection EqualityComparisonWithCoercionJS
+                if (this.submitBtn == null)
                     console.error("Can't find submit button");
-                } else {
+                else
                     this.display = this.submitBtn.parentNode;
-                }
+
                 this.listen(this.$.callbackForm, 'iron-form-submit', 'onSubmit');
                 this.listen(this.$.callbackForm, 'iron-form-error', 'onError');
                 return this.listen(this.$.callbackForm, 'iron-form-response', 'onResponse');
             },
-            onSubmit: function() {
+            onSubmit: function () {
                 var i, input, len, ref;
                 this.formData = this.$.callbackForm.serialize();
                 this.submitBtn.textContent = this.submitBtn.getAttribute('data-loading-text');
@@ -53,7 +56,7 @@
                 }
                 return this.submitBtn.disabled = true;
             },
-            onError: function() {
+            onError: function () {
                 this.prepareForMessage();
                 this.display.textContent = this.errorMessage;
                 this.toggleClass('alert-danger', true, this.display);
@@ -61,7 +64,7 @@
                     formData: this.formData
                 });
             },
-            onResponse: function() {
+            onResponse: function () {
                 this.prepareForMessage();
                 this.display.textContent = this.submitMessage;
                 this.toggleClass('alert-success', true, this.display);
@@ -69,9 +72,12 @@
                     formData: this.formData
                 });
             },
-            prepareForMessage: function() {
+            prepareForMessage: function () {
                 this.display.removeChild(this.submitBtn);
                 return this.toggleClass('alert', true, this.display);
+            },
+            submit: function () {
+                this.$.callbackForm.submit();
             }
         });
     </script>
