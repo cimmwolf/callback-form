@@ -64,8 +64,10 @@
                     formData: this.formData
                 });
             },
-            onResponse: function () {
+            onResponse: function (e) {
                 this.prepareForMessage();
+                if (e.detail.response && e.detail.response.message)
+                    this.submitMessage = e.detail.response.message;
                 this.display.textContent = this.submitMessage;
                 this.toggleClass('alert-success', true, this.display);
                 return this.fire('callback-form-sending-success', {
