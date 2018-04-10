@@ -5,16 +5,14 @@
         <style>
             :host { display: block; }
         </style>
-        <!--suppress HtmlUnknownTarget -->
-        <form is="iron-form" action="[[action]]" method="post" id="callbackForm">
+        <iron-form id="callbackForm">
             <slot></slot>
-        </form>
+        </iron-form>
     </template>
     <script>
         Polymer({
             is: 'callback-form',
             properties: {
-                action: String,
                 errorMessage: {
                     type: String,
                     value: 'Произошла ошибка. Попробуйте отправить вашу заявку позднее.'
@@ -41,11 +39,11 @@
 
                 this.listen(this.$.callbackForm, 'iron-form-submit', 'onSubmit');
                 this.listen(this.$.callbackForm, 'iron-form-error', 'onError');
-                return this.listen(this.$.callbackForm, 'iron-form-response', 'onResponse');
+                this.listen(this.$.callbackForm, 'iron-form-response', 'onResponse');
             },
             onSubmit: function () {
                 var i, input, len, ref;
-                this.formData = this.$.callbackForm.serialize();
+                this.formData = this.$.callbackForm.serializeForm();
                 this.submitBtn.textContent = this.submitBtn.getAttribute('data-loading-text');
                 ref = this.querySelectorAll('[name]');
                 for (i = 0, len = ref.length; i < len; i++) {
@@ -54,13 +52,13 @@
                         input.disabled = true;
                     }
                 }
-                return this.submitBtn.disabled = true;
+                this.submitBtn.disabled = true;
             },
             onError: function () {
                 this.prepareForMessage();
                 this.display.textContent = this.errorMessage;
                 this.toggleClass('alert-danger', true, this.display);
-                return this.fire('callback-form-sending-error', {
+                this.fire('callback-form-sending-error', {
                     formData: this.formData
                 });
             },
@@ -70,13 +68,13 @@
                     this.submitMessage = e.detail.response.message;
                 this.display.textContent = this.submitMessage;
                 this.toggleClass('alert-success', true, this.display);
-                return this.fire('callback-form-sending-success', {
+                this.fire('callback-form-sending-success', {
                     formData: this.formData
                 });
             },
             prepareForMessage: function () {
                 this.display.removeChild(this.submitBtn);
-                return this.toggleClass('alert', true, this.display);
+                this.toggleClass('alert', true, this.display);
             },
             submit: function () {
                 this.$.callbackForm.submit();
