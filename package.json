@@ -1,12 +1,11 @@
 {
   "name": "callback-form",
-  "version": "1.2.0",
+  "version": "2.1.0",
   "description": "Callback form for sites",
   "repository": {
     "type": "git",
     "url": "https://github.com/cimmwolf/Callback-form.git"
   },
-  "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.3.7",
