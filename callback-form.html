@@ -6,8 +6,11 @@
         <style>
             :host { display: block; }
         </style>
-        <iron-form id="callbackForm" on-iron-form-submit="_onSubmit" on-iron-form-error="_onError"
-                   on-iron-form-response="_onResponse">
+        <iron-form id="callbackForm"
+                   on-iron-form-submit="_onSubmit"
+                   on-iron-form-error="_onError"
+                   on-iron-form-response="_onResponse"
+                   on-keydown="_checkForEnter">
             <slot></slot>
         </iron-form>
     </template>
@@ -60,12 +63,9 @@
                 var i, input, len, ref;
                 this._formData = this.$.callbackForm.serializeForm();
                 this._submitBtn.textContent = this._submitBtn.getAttribute('data-loading-text');
-                ref = this.shadowRoot.querySelectorAll('[name]');
+                ref = this.querySelectorAll('[name]');
                 for (i = 0, len = ref.length; i < len; i++) {
-                    input = ref[i];
-                    if (this.isLightDescendant(input)) {
-                        input.disabled = true;
-                    }
+                    ref[i].disabled = true;
                 }
                 this._submitBtn.disabled = true;
             }
@@ -94,6 +94,12 @@
 
             submit() {
                 this.$.callbackForm.submit();
+            }
+
+            _checkForEnter(e) {
+                if (e.keyCode === 13) {
+                    this.submit();
+                }
             }
         }
 
