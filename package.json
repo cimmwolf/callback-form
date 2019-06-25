@@ -1,5 +1,5 @@
 {
-  "name": "callback-form",
+  "name": "@vistro/callback-form",
   "description": "Callback form for sites",
   "main": "callback-form.js",
   "dependencies": {
@@ -14,7 +14,7 @@
     "mocha": "^5.2.0",
     "wct-mocha": "^1.0.0"
   },
-  "version": "1.0.0",
+  "version": "3.0.0",
   "author": "Denis Beliaev <cimmwolf@gmail.com>",
   "license": "MIT"
 }
