@@ -16,6 +16,7 @@ class CallbackForm extends PolymerElement {
 </style>
 <iron-form id="callbackForm"
            on-iron-form-submit="_onSubmit"
+           on-iron-form-presubmit="_onPreSubmit"
            on-iron-form-error="_onError"
            on-iron-form-response="_onResponse"
            on-keydown="_checkForEnter">
@@ -42,7 +43,8 @@ class CallbackForm extends PolymerElement {
       },
       _submitBtn: Object,
       _display: Object,
-      _formData: Object
+      _formData: Object,
+      _onAir: Boolean
     }
   }
 
@@ -80,6 +82,15 @@ class CallbackForm extends PolymerElement {
     this._submitBtn.disabled = true;
   }
 
+  _onPreSubmit(e) {
+    if (this._onAir) {
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
+    }
+    this._onAir = true;
+  }
+
   _onError() {
     this._prepareForMessage();
     this._display.textContent = this.errorMessage;
@@ -98,6 +109,7 @@ class CallbackForm extends PolymerElement {
   }
 
   _prepareForMessage() {
+    this._onAir = false;
     this._display.removeChild(this._submitBtn);
     this._display.classList.add('alert');
   }
