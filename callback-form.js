@@ -53,12 +53,13 @@ class CallbackForm extends PolymerElement {
     this._submitBtn = this.shadowRoot.querySelector('[type="submit"]');
 
     if (!this.querySelector('form') && this.action) {
-      const slot = this.shadowRoot.querySelector('slot');
       const form = document.createElement('form');
       form.setAttribute('action', this.action);
       form.setAttribute('method', this.method);
-      slot.parentNode.insertBefore(form, slot);
-      form.appendChild(slot);
+      while (this.children.length > 0) {
+        form.appendChild(this.children[0]);
+      }
+      this.appendChild(form);
     }
 
     if (!this._submitBtn) {
