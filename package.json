@@ -3,7 +3,7 @@
   "description": "Callback form for sites",
   "main": "callback-form.js",
   "dependencies": {
-    "@polymer/iron-form": "^3.0.1",
+    "@vistro/iron-form": "^3.0.0",
     "@polymer/polymer": "^3.0.0"
   },
   "devDependencies": {
