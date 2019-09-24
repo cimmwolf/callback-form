@@ -1,5 +1,5 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@polymer/iron-form/iron-form.js';
+import '@vistro/iron-form/iron-form.js';
 
 /**
  * `callback-form`
