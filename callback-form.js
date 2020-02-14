@@ -111,7 +111,9 @@ class CallbackForm extends PolymerElement {
 
   _prepareForMessage() {
     this._onAir = false;
-    this._display.removeChild(this._submitBtn);
+    if(this._submitBtn) {
+      this._display.removeChild(this._submitBtn);
+    }
     this._display.classList.add('alert');
   }
 

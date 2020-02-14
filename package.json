@@ -2,6 +2,10 @@
   "name": "@vistro/callback-form",
   "description": "Callback form for sites",
   "main": "callback-form.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/cimmwolf/callback-form.git"
+  },
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
     "@vistro/iron-form": "^3.0.3"
