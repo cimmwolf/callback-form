@@ -64,11 +64,11 @@ class CallbackForm extends PolymerElement {
 
     if (!this._submitBtn) {
       this._submitBtn = this.querySelector('button:not([type="button"])');
+      this._submitBtn.addEventListener('click', () => this.submit());
     }
     if (!this._submitBtn) {
       console.error("Can't find submit button");
     } else {
-      this._submitBtn.addEventListener('click', () => this.submit());
       this._display = this._submitBtn.parentNode;
     }
   }
