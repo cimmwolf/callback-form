@@ -50,7 +50,7 @@ class CallbackForm extends PolymerElement {
 
   ready() {
     super.ready();
-    this._submitBtn = this.shadowRoot.querySelector('[type="submit"]');
+    this._submitBtn = this.querySelector('[type="submit"]');
 
     if (!this.querySelector('form') && this.action) {
       const form = document.createElement('form');
