@@ -31,6 +31,8 @@
 
             static get properties() {
                 return {
+                    action: String,
+                    method: {type: String, value: 'POST'},
                     errorMessage: {
                         type: String,
                         value: 'Произошла ошибка. Попробуйте отправить вашу заявку позднее.'
@@ -48,6 +50,16 @@
             ready() {
                 super.ready();
                 this._submitBtn = this.querySelector('[type="submit"]');
+
+                if (!this.querySelector('form') && this.action) {
+                    const form = document.createElement('form');
+                    form.setAttribute('action', this.action);
+                    form.setAttribute('method', this.method);
+                    while (this.children.length > 0) {
+                        form.appendChild(this.children[0]);
+                    }
+                    this.appendChild(form);
+                }
 
                 if (!this._submitBtn) {
                     this._submitBtn = this.querySelector('button:not([type="button"])');
