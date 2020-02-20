@@ -47,7 +47,7 @@
 
             ready() {
                 super.ready();
-                this._submitBtn = this.shadowRoot.querySelector('[type="submit"]');
+                this._submitBtn = this.querySelector('[type="submit"]');
 
                 if (!this._submitBtn) {
                     this._submitBtn = this.querySelector('button:not([type="button"])');
@@ -55,6 +55,10 @@
                 if (!this._submitBtn) {
                     console.error("Can't find submit button");
                 } else {
+                    this._submitBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.submit()
+                    });
                     this._display = this._submitBtn.parentNode;
                 }
             }
