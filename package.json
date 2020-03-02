@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "@vistro/iron-form": "^3.0.3"
+    "@vistro/iron-form": "^3.0.5"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
