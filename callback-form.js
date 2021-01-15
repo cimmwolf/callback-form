@@ -47,7 +47,7 @@ class CallbackForm extends PolymerElement {
       _onAir: Boolean
     }
   }
-
+  //+++++
   ready() {
     super.ready();
     this._submitBtn = this.querySelector('[type="submit"]');
@@ -69,6 +69,7 @@ class CallbackForm extends PolymerElement {
       console.error("Can't find submit button");
     } else {
       this._display = this._submitBtn.parentNode;
+      console.log('old sub', this.$.callbackForm)
       this._submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         this.submit();
@@ -121,6 +122,7 @@ class CallbackForm extends PolymerElement {
   }
 
   submit() {
+    console.log('old sub', this.$.callbackForm.submit())
     this.$.callbackForm.submit();
   }
 

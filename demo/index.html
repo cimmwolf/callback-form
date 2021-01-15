@@ -14,6 +14,7 @@
     </script>
 
     <script type="module" src="../callback-form.js"></script>
+    <script type="module" src="../custom-callback-form.js"></script>
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -25,9 +26,18 @@
       <h3>Basic callback-form demo</h3>
       <demo-snippet>
         <template>
-          <callback-form></callback-form>
+          <callback-form action="https://httpbin.org/post"><button>SUBMIT</button></callback-form>
         </template>
       </demo-snippet>
+
+      <!--custom web component-->
+      <h3>Custom callback-form demo</h3>
+      <demo-snippet>
+        <template>
+          <custom-callback-form action="https://httpbin.org/post"><button>SUBMIT</button></custom-callback-form>
+        </template>
+      </demo-snippet>
+      <!--custom web component-->
     </div>
   </body>
 </html>
