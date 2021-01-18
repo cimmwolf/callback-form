@@ -34,7 +34,16 @@
       <h3>Custom callback-form demo</h3>
       <demo-snippet>
         <template>
-          <custom-callback-form action="https://httpbin.org/post"><button>SUBMIT</button></custom-callback-form>
+          <custom-callback-form action="https://httpbin.org/post">
+            <input name="lol"></input>
+            <select multiple
+            name="kek">
+              <option>Пункт 1</option>
+              <option>Пункт 2</option>
+            </select>
+            <input name="qq"></input>
+            <button data-loading-text="sending...">SUBMIT</button>
+          </custom-callback-form>
         </template>
       </demo-snippet>
       <!--custom web component-->

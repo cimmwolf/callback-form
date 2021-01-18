@@ -47,7 +47,7 @@ class CallbackForm extends PolymerElement {
       _onAir: Boolean
     }
   }
-  //+++++
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   ready() {
     super.ready();
     this._submitBtn = this.querySelector('[type="submit"]');
@@ -71,6 +71,7 @@ class CallbackForm extends PolymerElement {
       this._display = this._submitBtn.parentNode;
       console.log('old sub', this.$.callbackForm)
       this._submitBtn.addEventListener('click', (e) => {
+        console.log('e', e)
         e.preventDefault();
         this.submit();
       });
@@ -78,6 +79,7 @@ class CallbackForm extends PolymerElement {
   }
 
   _onSubmit() {
+    console.log('_onSubmit')
     this._formData = this.$.callbackForm.serializeForm();
     this._submitBtn.textContent = this._submitBtn.getAttribute('data-loading-text');
     let ref = this.querySelectorAll('[name]');
@@ -88,6 +90,7 @@ class CallbackForm extends PolymerElement {
   }
 
   _onPreSubmit(e) {
+    console.log('_onPreSubmit', e)
     if (this._onAir) {
       e.stopPropagation();
       e.preventDefault();
@@ -104,6 +107,7 @@ class CallbackForm extends PolymerElement {
   }
 
   _onResponse(e) {
+    console.log('_onResponse')
     this._prepareForMessage();
     if (e.detail.response && e.detail.response.message) {
       this.submitMessage = e.detail.response.message;
@@ -114,6 +118,7 @@ class CallbackForm extends PolymerElement {
   }
 
   _prepareForMessage() {
+    console.log('_prepareForMessage')
     this._onAir = false;
     if(this._submitBtn) {
       this._display.removeChild(this._submitBtn);
