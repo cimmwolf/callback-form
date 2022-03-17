@@ -6,19 +6,7 @@
     "type": "git",
     "url": "https://github.com/cimmwolf/callback-form.git"
   },
-  "dependencies": {
-    "@polymer/polymer": "^3.0.0",
-    "@vistro/iron-form": "^3.0.5"
-  },
-  "devDependencies": {
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
-    "@polymer/test-fixture": "^4.0.2",
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "wct-mocha": "^1.0.0"
-  },
-  "version": "3.3.7",
+  "version": "4.0.0",
   "author": "Denis Beliaev <cimmwolf@gmail.com>",
   "license": "MIT"
 }

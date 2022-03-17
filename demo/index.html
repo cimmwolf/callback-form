@@ -1,33 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>callback-form demo</title>
+  <title>callback-form demo</title>
 
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script type="module" src="../callback-form.js"></script>
+</head>
+<body>
+<div class="vertical-section-container centered">
+  <h3>Basic callback-form demo</h3>
 
-    <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
-      import '@polymer/iron-demo-helpers/demo-snippet';
-    </script>
-
-    <script type="module" src="../callback-form.js"></script>
-
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
-    </custom-style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic callback-form demo</h3>
-      <demo-snippet>
-        <template>
-          <callback-form></callback-form>
-        </template>
-      </demo-snippet>
-    </div>
-  </body>
+  <callback-form action="https://httpbin.org/post" submit-message="MESSAGE_SUBMIT" error-message="MESSAGE_ERROR">
+    <input name="name" required>
+    <input name="surname" required>
+    <button type="submit" data-loading-text="STATUS_LOADING">
+      STATUS_READY
+    </button>
+  </callback-form>
+</div>
+</body>
 </html>
